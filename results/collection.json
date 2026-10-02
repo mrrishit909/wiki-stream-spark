@@ -1,0 +1,7 @@
+{
+  "source": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "minutes": 30.0,
+  "events": 64067,
+  "files": 90,
+  "started_utc": "2026-10-02T01:19:09Z"
+}
