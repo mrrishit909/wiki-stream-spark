@@ -1,0 +1,3 @@
+query,late_rows_sent,rows_dropped_by_watermark,windows_written_normal_run,windows_written_late_run,written_windows_identical,partial_groups_in_late_rows,late_rows_minutes_behind
+per_minute,500,4,112,112,True,4,26.4
+per_wiki,500,29,465,465,True,29,26.4
