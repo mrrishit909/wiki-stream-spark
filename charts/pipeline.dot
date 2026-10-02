@@ -1,0 +1,18 @@
+digraph P {
+  graph [bgcolor="#0b0b0b", rankdir=LR, nodesep=0.25, ranksep=0.55];
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=11, fontcolor="#f2f2f0", color="#3a3a3a"];
+  edge [color="#8a8a87", fontname="Helvetica", fontsize=9, fontcolor="#8a8a87"];
+  sse [label="Wikimedia\nrecentchange\n(live SSE)", fillcolor="#2a2a2a"];
+  land [label="collect.py\n90 JSON files\n(one per 20 s)", fillcolor="#141414"];
+  src [label="readStream.json\n3 files per batch", fillcolor="#1f3b5c"];
+  wm [label="event time +\n2-minute watermark", fillcolor="#1f3b5c"];
+  a [label="1-minute windows\nby type", fillcolor="#4a2414"];
+  b [label="5-minute windows\nby wiki", fillcolor="#4a2414"];
+  c [label="sliding 10-min windows\nedit bursts", fillcolor="#4a2414"];
+  pq [label="Parquet sinks\n(append, checkpointed)", fillcolor="#141414"];
+  chk [label="check.py: DuckDB batch\nGROUP BY must match", fillcolor="#2a2a2a"];
+  sse -> land -> src -> wm;
+  wm -> a; wm -> b; wm -> c;
+  a -> pq; b -> pq; c -> pq;
+  land -> chk [style=dashed]; pq -> chk [style=dashed];
+}
